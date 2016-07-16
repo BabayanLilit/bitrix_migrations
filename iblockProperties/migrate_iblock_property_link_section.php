@@ -1,5 +1,5 @@
 <?php
-//добавление свойства типа строка
+//добавление свойства типа привязка к разделам
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 $fail = function ($meaasge) {
     echo "<p>" . $meaasge;
@@ -24,33 +24,36 @@ $getIblIdByCode = function ($iblockCode) use ($fail) {
     
     return false;
 };
+
 CModule::IncludeModule("iblock");
 $iblockCode = "sbl_social_links";
-$propertCode = "LINK";
+$propertCode = "LINK_SECTION_CODE";
 $iblId = $getIblIdByCode($iblockCode);
+//отличие от строки только в этом
+//"PROPERTY_TYPE" => "G" и LINK_IBLOCK_ID
 $iblPropertyFields = array(
-    "NAME" => "Ссылка",
+    "NAME" => "cвойство типа привязка к разделам",
     "SORT" => "500",
     "CODE" => $propertCode,
     "MULTIPLE" => "N",
     "IS_REQUIRED" => "Y",
     "ACTIVE" => "Y",
-    "PROPERTY_TYPE" => "S",
+    "PROPERTY_TYPE" => "G",
+    "FILE_TYPE" => "",
     "IBLOCK_ID" => $iblId,
-    "LIST_TYPE" => "L",
-    "ROW_COUNT" => 1,
+    "LIST_TYPE" => "",
+    "ROW_COUNT" => "",
     "COL_COUNT" => 30,
     "USER_TYPE" => "",
-    "FILE_TYPE" => "",
-    "LINK_IBLOCK_ID" => "",
+    "LINK_IBLOCK_ID" => 6,
     "DEFAULT_VALUE" => "",
     "USER_TYPE_SETTINGS" => array(),
     "WITH_DESCRIPTION" => "N",
     "SEARCHABLE" => "N",
     "FILTRABLE" => "N",
-    "MULTIPLE_CNT" => 5,
+    "MULTIPLE_CNT" => "",
     "HINT" => "",
-    "VALUES" => array(),
+    "VALUES" => "",
     "SECTION_PROPERTY" => "Y",
     "SMART_FILTER" => "N",
     "DISPLAY_TYPE" => "",

@@ -1,5 +1,5 @@
 <?php
-//добавление свойства типа строка
+//добавление свойства типа список
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 $fail = function ($meaasge) {
     echo "<p>" . $meaasge;
@@ -24,18 +24,21 @@ $getIblIdByCode = function ($iblockCode) use ($fail) {
     
     return false;
 };
+
 CModule::IncludeModule("iblock");
 $iblockCode = "sbl_social_links";
-$propertCode = "LINK";
+$propertCode = "LIST_CODE";
 $iblId = $getIblIdByCode($iblockCode);
+//отличие от строки только в этом
+//"PROPERTY_TYPE" => "L" и VALUES
 $iblPropertyFields = array(
-    "NAME" => "Ссылка",
+    "NAME" => "cвойство типа список",
     "SORT" => "500",
     "CODE" => $propertCode,
     "MULTIPLE" => "N",
     "IS_REQUIRED" => "Y",
     "ACTIVE" => "Y",
-    "PROPERTY_TYPE" => "S",
+    "PROPERTY_TYPE" => "L",
     "IBLOCK_ID" => $iblId,
     "LIST_TYPE" => "L",
     "ROW_COUNT" => 1,
@@ -48,9 +51,24 @@ $iblPropertyFields = array(
     "WITH_DESCRIPTION" => "N",
     "SEARCHABLE" => "N",
     "FILTRABLE" => "N",
-    "MULTIPLE_CNT" => 5,
+    "MULTIPLE_CNT" => "",
     "HINT" => "",
-    "VALUES" => array(),
+    "VALUES" => array(
+        "n0" => array(
+            "ID" => "n0",
+            "VALUE" => "vars 1",
+            "XML_ID" => "vars_1",
+            "SORT" => "100",
+            "DEF" => "Y",
+        ),
+        "n1" => array(
+            "ID" => "n1",
+            "VALUE" => "vars 2",
+            "XML_ID" => "vars_2",
+            "SORT" => "200",
+            "DEF" => "N",
+        )
+    ),
     "SECTION_PROPERTY" => "Y",
     "SMART_FILTER" => "N",
     "DISPLAY_TYPE" => "",

@@ -1,5 +1,5 @@
 <?php
-//добавление свойства типа строка
+//добавление свойства типа дата
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 $fail = function ($meaasge) {
     echo "<p>" . $meaasge;
@@ -24,36 +24,39 @@ $getIblIdByCode = function ($iblockCode) use ($fail) {
     
     return false;
 };
+
 CModule::IncludeModule("iblock");
 $iblockCode = "sbl_social_links";
-$propertCode = "LINK";
+$propertCode = "DATE_CODE";
 $iblId = $getIblIdByCode($iblockCode);
+//отличие от строки только в этом
+//"PROPERTY_TYPE" => "S" и "USER_TYPE" => "Date" ,
 $iblPropertyFields = array(
-    "NAME" => "Ссылка",
+    "NAME" => "cвойство типа дата ",
     "SORT" => "500",
     "CODE" => $propertCode,
     "MULTIPLE" => "N",
     "IS_REQUIRED" => "Y",
     "ACTIVE" => "Y",
     "PROPERTY_TYPE" => "S",
-    "IBLOCK_ID" => $iblId,
-    "LIST_TYPE" => "L",
-    "ROW_COUNT" => 1,
-    "COL_COUNT" => 30,
-    "USER_TYPE" => "",
     "FILE_TYPE" => "",
+    "IBLOCK_ID" => $iblId,
+    "LIST_TYPE" => "",
+    "ROW_COUNT" => "",
+    "COL_COUNT" => 30,
+    "USER_TYPE" => "Date",
     "LINK_IBLOCK_ID" => "",
-    "DEFAULT_VALUE" => "",
-    "USER_TYPE_SETTINGS" => array(),
+    "DEFAULT_VALUE" => "12.07.2016",
+    "USER_TYPE_SETTINGS" => "",
     "WITH_DESCRIPTION" => "N",
     "SEARCHABLE" => "N",
     "FILTRABLE" => "N",
-    "MULTIPLE_CNT" => 5,
+    "MULTIPLE_CNT" => "",
     "HINT" => "",
-    "VALUES" => array(),
+    "VALUES" => "",
     "SECTION_PROPERTY" => "Y",
     "SMART_FILTER" => "N",
-    "DISPLAY_TYPE" => "",
+    "DISPLAY_TYPE" => "F", //вид в умном фильтре (F- флажки, K-Радиокнопки, P- Выпадающий список)
     "DISPLAY_EXPANDED" => "N",
     "FILTER_HINT" => "",
 );

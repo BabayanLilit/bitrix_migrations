@@ -1,5 +1,5 @@
 <?php
-//добавление свойства типа строка
+//добавление свойства типа число
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 $fail = function ($meaasge) {
     echo "<p>" . $meaasge;
@@ -26,16 +26,18 @@ $getIblIdByCode = function ($iblockCode) use ($fail) {
 };
 CModule::IncludeModule("iblock");
 $iblockCode = "sbl_social_links";
-$propertCode = "LINK";
+$propertCode = "NUMERIC_CODE";
 $iblId = $getIblIdByCode($iblockCode);
+//отличие от строки только в этом
+//"PROPERTY_TYPE" => "N"
 $iblPropertyFields = array(
-    "NAME" => "Ссылка",
+    "NAME" => "cвойство типа число",
     "SORT" => "500",
     "CODE" => $propertCode,
     "MULTIPLE" => "N",
     "IS_REQUIRED" => "Y",
     "ACTIVE" => "Y",
-    "PROPERTY_TYPE" => "S",
+    "PROPERTY_TYPE" => "N",
     "IBLOCK_ID" => $iblId,
     "LIST_TYPE" => "L",
     "ROW_COUNT" => 1,
